@@ -1,0 +1,15 @@
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.BLL\bin\Debug\net6.0\Asg2.BLL.deps.json
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.BLL\bin\Debug\net6.0\Asg2.BLL.dll
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.BLL\bin\Debug\net6.0\Asg2.BLL.pdb
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.BLL\obj\Debug\net6.0\Asg2.BLL.csproj.AssemblyReference.cache
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.BLL\obj\Debug\net6.0\Asg2.BLL.GeneratedMSBuildEditorConfig.editorconfig
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.BLL\obj\Debug\net6.0\Asg2.BLL.AssemblyInfoInputs.cache
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.BLL\obj\Debug\net6.0\Asg2.BLL.AssemblyInfo.cs
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.BLL\obj\Debug\net6.0\Asg2.BLL.csproj.CoreCompileInputs.cache
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.BLL\obj\Debug\net6.0\Asg2.BLL.dll
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.BLL\obj\Debug\net6.0\refint\Asg2.BLL.dll
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.BLL\obj\Debug\net6.0\Asg2.BLL.pdb
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.BLL\obj\Debug\net6.0\ref\Asg2.BLL.dll
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.BLL\bin\Debug\net6.0\Asg2.DAL.dll
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.BLL\bin\Debug\net6.0\Asg2.DAL.pdb
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.BLL\obj\Debug\net6.0\Asg2.BLL.csproj.CopyComplete

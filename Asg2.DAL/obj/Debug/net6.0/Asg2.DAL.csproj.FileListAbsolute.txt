@@ -1,0 +1,14 @@
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.DAL\bin\Debug\net6.0\Asg2.DAL.deps.json
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.DAL\bin\Debug\net6.0\Asg2.DAL.dll
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.DAL\bin\Debug\net6.0\Asg2.DAL.pdb
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.DAL\obj\Debug\net6.0\Asg2.DAL.csproj.AssemblyReference.cache
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.DAL\obj\Debug\net6.0\Asg2.DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.DAL\obj\Debug\net6.0\Asg2.DAL.AssemblyInfoInputs.cache
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.DAL\obj\Debug\net6.0\Asg2.DAL.AssemblyInfo.cs
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.DAL\obj\Debug\net6.0\Asg2.DAL.csproj.CoreCompileInputs.cache
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.DAL\obj\Debug\net6.0\Asg2.DAL.dll
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.DAL\obj\Debug\net6.0\refint\Asg2.DAL.dll
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.DAL\obj\Debug\net6.0\Asg2.DAL.pdb
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.DAL\obj\Debug\net6.0\ref\Asg2.DAL.dll
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.DAL\bin\Debug\net6.0\Asg2.DAL.runtimeconfig.json
+D:\Lau\FACULTATE\An3 Sem2\SD\asg2\Asg2\Asg2.DAL\obj\Debug\net6.0\Asg2.DAL.genruntimeconfig.cache
