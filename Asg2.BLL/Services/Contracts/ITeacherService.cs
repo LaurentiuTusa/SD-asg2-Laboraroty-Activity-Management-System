@@ -8,10 +8,8 @@ using Asg2.DAL.Models;
 
 namespace Asg2.BLL.Services.Contracts
 {
-    public interface IStudentService
+    public interface ITeacherService
     {
-        Task<List<Student>> GetStudents();
-        //Task<Student> GetStudentByEmail(string email);
-        Student GetStudentByEmail(string email);
+
     }
 }

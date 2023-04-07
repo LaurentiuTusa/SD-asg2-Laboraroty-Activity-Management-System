@@ -41,13 +41,15 @@ namespace Asg2.Controllers
         public async Task<IActionResult> ShowStudents()
         {
             List<Student> listStudents = await _studentService.GetStudents();
+            //Student x = _studentService.GetStudentByEmail("alesicobean@yahoo.com");//verificare pentru null
+            //Console.WriteLine(x.Name + " " + x.Email);
             return View(listStudents);
         }
 
         public async Task<IActionResult> LogOut()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Login", "Access");//Page Login (as cshtml) from Access Controller
+            return RedirectToAction("Login", "Access");//Page "Login" (as cshtml) from "Access" Controller
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

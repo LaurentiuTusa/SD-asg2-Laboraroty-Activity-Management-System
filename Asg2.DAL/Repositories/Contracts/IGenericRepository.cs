@@ -13,5 +13,8 @@ namespace Asg2.DAL.Repositories.Contracts
 
 
         Task<List<TModel>> GetStudents();
+
+        //Task<Student> GetStudentByEmail(string email);
+        Student GetStudentByEmail(string email);
     }
 }

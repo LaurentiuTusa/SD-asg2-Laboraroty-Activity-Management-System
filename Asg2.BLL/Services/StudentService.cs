@@ -19,6 +19,8 @@ namespace Asg2.BLL.Services
         {
             _repository = repository;
         }
+
+        //METHOD CALLS
         public async Task<List<Student>> GetStudents()
         {
             try
@@ -31,6 +33,20 @@ namespace Asg2.BLL.Services
             }
         }
 
-
+/*        public async Task<Student> GetStudentByEmail(string email)
+        {
+            try
+            {
+                return await _repository.GetStudentByEmail(email);
+            }
+            catch
+            {
+                throw;
+            }
+        }*/
+        public Student GetStudentByEmail(string email)
+        {
+            return _repository.GetStudentByEmail(email);
+        }
     }
 }
