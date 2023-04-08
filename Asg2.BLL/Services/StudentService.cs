@@ -33,20 +33,37 @@ namespace Asg2.BLL.Services
             }
         }
 
-/*        public async Task<Student> GetStudentByEmail(string email)
-        {
-            try
-            {
-                return await _repository.GetStudentByEmail(email);
-            }
-            catch
-            {
-                throw;
-            }
-        }*/
         public Student GetStudentByEmail(string email)
         {
             return _repository.GetStudentByEmail(email);
         }
+
+        public bool StudentSignIn(string email, string password)
+        {
+            var student = _repository.GetStudentByEmail(email);
+
+            if (student == null)
+            {
+                Console.WriteLine("Am returnat student null");
+                return false;
+            }
+
+            if (Base64Encode(password) != student.Password)
+            {
+                Console.WriteLine("Pe !=: Base64Encode(password): " + Base64Encode(password) + "    teacher.Password din database: " + student.Password);
+                return false;
+            }
+
+            Console.WriteLine("Pe ==: Base64Encode(password): " + Base64Encode(password) + "    teacher.Password din database: " + student.Password);
+            return true;
+        }
+
+        public static string Base64Encode(string s)
+        {
+            var sBytes = Encoding.UTF8.GetBytes(s);
+            return Convert.ToBase64String(sBytes);
+        }
+
+     
     }
 }

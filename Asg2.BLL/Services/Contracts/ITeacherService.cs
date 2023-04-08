@@ -11,5 +11,8 @@ namespace Asg2.BLL.Services.Contracts
     public interface ITeacherService
     {
 
+        Teacher GetTeacherByEmail(string email);
+        bool TeacherSignIn(string email, string password);
+
     }
 }

@@ -16,5 +16,6 @@ namespace Asg2.DAL.Repositories.Contracts
 
         //Task<Student> GetStudentByEmail(string email);
         Student GetStudentByEmail(string email);
+        Teacher GetTeacherByEmail(string email);
     }
 }

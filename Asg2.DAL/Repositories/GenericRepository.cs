@@ -35,43 +35,14 @@ namespace Asg2.DAL.Repositories
             }
         }
 
-        /*        public Student GetStudentByEmail(string email)
-                {
-                    var student = _sdAsg2Context.Students.FirstOrDefault(s => s.Email == email);
-
-                    if (student == null)
-                    {
-                        return null;
-                    }
-
-                    return new Student
-                    {
-                        Id = student.Id,
-                        Name = student.Name,
-                        Email = student.Email,
-                        Password = student.Password,
-                        Group = student.Group,
-                        Hobby = student.Hobby
-                    };
-                }*/
-
-        /*        public async Task<TModel> GetStudentByEmail(string email)
-                {
-                    try
-                    {
-                        return await _sdAsg2Context.Set<TModel>()
-                                                   .FirstOrDefaultAsync(s => s.Email == email);
-                    }
-                    catch
-                    {
-                        throw;
-                    }
-                }*/
-
         public Student GetStudentByEmail(string email)
         {
             return _sdAsg2Context.Students.FirstOrDefault(s => s.Email == email);
         }
 
+        public Teacher GetTeacherByEmail(string email)
+        {
+            return _sdAsg2Context.Teachers.FirstOrDefault(s => s.Email == email);
+        }
     }
 }

@@ -18,7 +18,12 @@ builder.Services.AddDbContext<SdAsg2Context>(options =>
 
 builder.Services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IStudentService, StudentService>();
-
+builder.Services.AddScoped<ITeacherService, TeacherService>();
+builder.Services.AddScoped<ITokensService, TokensService>();
+builder.Services.AddScoped<IAttendanceService, AttendanceService>();
+builder.Services.AddScoped<ILabsService, LabsService>();
+builder.Services.AddScoped<ISubjectsService, SubjectsService>();
+builder.Services.AddScoped<ISubmisionsService, SubmisionsService>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>
 {

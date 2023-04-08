@@ -20,7 +20,19 @@
             <input type="checkbox" asp-for="KeepLoggedIn" />
             Keep me logged in.
         </label>
+
+        <label>
+            <input type="checkbox" asp-for="StudentDot" />
+            Student
+        </label>
+
+        <label>
+            <input type="checkbox" asp-for="TeacherDot" />
+            Teacher
+        </label>
+
         <button type="submit">Login</button>
+        
 
         @if (ViewData["ValidateMessage"] != null)
         {
