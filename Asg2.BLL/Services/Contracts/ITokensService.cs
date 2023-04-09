@@ -10,5 +10,10 @@ namespace Asg2.BLL.Services.Contracts
 {
     public interface ITokensService
     {
+        Task<Token> AddToken();
+        bool ValidateToken(string inputToken);
+
+        Task DeleteToken(string str);
+
     }
 }

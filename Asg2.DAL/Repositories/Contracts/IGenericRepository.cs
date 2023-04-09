@@ -14,8 +14,15 @@ namespace Asg2.DAL.Repositories.Contracts
 
         Task<List<TModel>> GetStudents();
 
+        Task<Student> Register(Student st);
+
         //Task<Student> GetStudentByEmail(string email);
         Student GetStudentByEmail(string email);
         Teacher GetTeacherByEmail(string email);
+
+        Token GetTokenByValue(string inputToken);
+
+        Task<Token> AddToken(Token t);
+        Task DeleteToken(string tokenData);
     }
 }

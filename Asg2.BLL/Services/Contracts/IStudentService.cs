@@ -13,7 +13,7 @@ namespace Asg2.BLL.Services.Contracts
         Task<List<Student>> GetStudents();
         //Task<Student> GetStudentByEmail(string email);
         Student GetStudentByEmail(string email);
-
+        Task<Student> Register(Student st);
         bool StudentSignIn(string email, string password);
     }
 }

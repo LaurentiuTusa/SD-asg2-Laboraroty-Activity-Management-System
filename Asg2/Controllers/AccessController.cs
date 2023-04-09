@@ -31,164 +31,197 @@ namespace Asg2.Controllers
              return View();
          }
 
-     [HttpPost]
-     public async Task<IActionResult> Login(VMLogin modelLogin, string student, string teacher)
-     {
-        //if (ModelState.IsValid)
-        //{
-            //if (!string.IsNullOrEmpty(student))// User clicked 'Login Student' button
-            if (modelLogin.StudentDot == true && modelLogin.TeacherDot == false)
-            {
+         [HttpPost]
+        public async Task<IActionResult> Login(VMLogin modelLogin)
+        {
 
-                //await LoginStudent(modelLogin);
-                if (_studentService.StudentSignIn(modelLogin.Email, modelLogin.Password))
+                if (modelLogin.StudentDot == true && modelLogin.TeacherDot == false)//STUDENT
                 {
-                    List<Claim> claims = new List<Claim>(){
-                         new Claim(ClaimTypes.NameIdentifier, modelLogin.Email),
-                         new Claim("OtherProperties", "Example Role")
-                     };
-
-                    ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-                    AuthenticationProperties properties = new AuthenticationProperties()
+                    if (_studentService.StudentSignIn(modelLogin.Email, modelLogin.Password))
                     {
-                        AllowRefresh = true,
-                        IsPersistent = modelLogin.KeepLoggedIn
-                    };
+                        List<Claim> claims = new List<Claim>(){
+                             new Claim(ClaimTypes.NameIdentifier, modelLogin.Email),
+                             new Claim("OtherProperties", "Example Role")
+                         };
 
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                        new ClaimsPrincipal(claimsIdentity), properties);
+                        ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-                    TempData["Email"] = modelLogin.Email;
+                        AuthenticationProperties properties = new AuthenticationProperties()
+                        {
+                            AllowRefresh = true,
+                            IsPersistent = modelLogin.KeepLoggedIn
+                        };
 
-                    return RedirectToAction("Index", "Home");
+                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                            new ClaimsPrincipal(claimsIdentity), properties);
+
+                        TempData["Email"] = modelLogin.Email;
+
+                        return RedirectToAction("Index", "Home");//TREBE SCHIMBAT IN STUDENT CONTROLLER
+                    }
+
+                    ViewData["ValidateMessage"] = "Student not found";
+                    return View();
+                }
+               
+                else if (modelLogin.StudentDot == false && modelLogin.TeacherDot == true)//TEACHER
+                {
+                    if (_teacherService.TeacherSignIn(modelLogin.Email, modelLogin.Password))
+                    {
+                        List<Claim> claims = new List<Claim>(){
+                             new Claim(ClaimTypes.NameIdentifier, modelLogin.Email),
+                             new Claim("OtherProperties", "Example Role")
+                         };
+
+                        ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                        AuthenticationProperties properties = new AuthenticationProperties()
+                        {
+                            AllowRefresh = true,
+                            //IsPersistent = modelLogin.KeepLoggedIn
+                        };
+
+                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                            new ClaimsPrincipal(claimsIdentity), properties);
+
+                        TempData["Email"] = modelLogin.Email;//This is how you pass data to subsequent controllers and views
+
+                        return RedirectToAction("ShowStudents", "Teacher");//TEACHER CONTROLLER
+                    }
+
+                    ViewData["ValidateMessage"] = "Teacher not found";
+                    return View();
+                }
+                else 
+                {
+                    ViewData["ValidateMessage"] = "Invalid selection";
+                    return View();
                 }
 
-                ViewData["ValidateMessage"] = "Student not found";
+                // Validation failed, show error message
+                ViewData["ValidateMessage"] = "Invalid email or password.";
                 return View();
-            }
-            //else if (!string.IsNullOrEmpty(teacher))// User clicked 'Login Teacher' button
-            else if (modelLogin.StudentDot == false && modelLogin.TeacherDot == true)
-            {
-                Console.WriteLine("Am inregistrat ca s-a apasat Login Teacher");
-                //await LoginTeacher(modelLogin);
-                if (_teacherService.TeacherSignIn(modelLogin.Email, modelLogin.Password))
-                {
-                    List<Claim> claims = new List<Claim>(){
-                         new Claim(ClaimTypes.NameIdentifier, modelLogin.Email),
-                         new Claim("OtherProperties", "Example Role")
-                     };
+         }
 
-                    ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+        /* public IActionResult LoginStudent()
+         {
+             ClaimsPrincipal claimUser = HttpContext.User;
 
-                    AuthenticationProperties properties = new AuthenticationProperties()
-                    {
-                        AllowRefresh = true,
-                        //IsPersistent = modelLogin.KeepLoggedIn
-                    };
+             if (claimUser.Identity.IsAuthenticated)
+                 return RedirectToAction("Index", "Home");
 
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                        new ClaimsPrincipal(claimsIdentity), properties);
+             return View();
+         }
+         [HttpPost]
+         public async Task<IActionResult> LoginStudent(VMLogin modelLogin)
+         {//if email and password match in the database
+             if (_studentService.StudentSignIn(modelLogin.Email, modelLogin.Password))
+             {
+                 List<Claim> claims = new List<Claim>(){
+                     new Claim(ClaimTypes.NameIdentifier, modelLogin.Email),
+                     new Claim("OtherProperties", "Example Role")
+                 };
 
-                    TempData["Email"] = modelLogin.Email;//This is how you pass data to subsequent controllers and views
+                 ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-                    return RedirectToAction("ShowStudents", "Home");
-                }
+                 AuthenticationProperties properties = new AuthenticationProperties()
+                 {
+                     AllowRefresh = true,
+                     IsPersistent = modelLogin.KeepLoggedIn
+                 };
 
-                ViewData["ValidateMessage"] = "Teacher not found";
-                return View();
-            }
-            else 
-            {
-                ViewData["ValidateMessage"] = "Invalid selection";
-                return View();
-            }
-        //}//de la if (ModelState.IsValid)
+                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                     new ClaimsPrincipal(claimsIdentity), properties);
 
-            // Validation failed, show error message
-            ViewData["ValidateMessage"] = "Invalid email or password.";
+                 TempData["Email"] = modelLogin.Email;
+
+                 return RedirectToAction("Index", "Home");
+             }
+
+             ViewData["ValidateMessage"] = "User not found";
+             return View();
+         }
+
+
+         public IActionResult LoginTeacher()
+         {
+             ClaimsPrincipal claimUser = HttpContext.User;
+
+             if (claimUser.Identity.IsAuthenticated)
+                 return RedirectToAction("ShowStudents", "Home");
+
+             return View();
+         }
+         [HttpPost]
+         public async Task<IActionResult> LoginTeacher(VMLogin modelLogin)
+         {//if email and password match in the database
+             if (_teacherService.TeacherSignIn(modelLogin.Email, modelLogin.Password))
+             {
+                 List<Claim> claims = new List<Claim>(){
+                     new Claim(ClaimTypes.NameIdentifier, modelLogin.Email),
+                     new Claim("OtherProperties", "Example Role")
+                 };
+
+                 ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                 AuthenticationProperties properties = new AuthenticationProperties()
+                 {
+                     AllowRefresh = true,
+                     //IsPersistent = modelLogin.KeepLoggedIn
+                 };
+
+                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                     new ClaimsPrincipal(claimsIdentity), properties);
+
+                 TempData["Email"] = modelLogin.Email;//This is how you pass data to subsequent controllers and views
+
+                 return RedirectToAction("ShowStudents", "Home");
+             }
+
+             ViewData["ValidateMessage"] = "User not found";
+             return View();
+         }*/
+
+        [HttpGet]
+        public async Task<IActionResult> Register() // sau public IActionResult Register()
+        {
             return View();
-     }
+        }
 
-    /* public IActionResult LoginStudent()
-     {
-         ClaimsPrincipal claimUser = HttpContext.User;
+        [HttpPost]
+        public async Task<IActionResult> Register(VMRegister modelRegister)
+        {
+            try
+            {
+                Student s = new Student
+                {
+                    Name = modelRegister.Name,
+                    Email = modelRegister.Email,
+                    Password = modelRegister.Password,
+                    Group = modelRegister.Group,
+                    Hobby = modelRegister.Hobby
+                };
 
-         if (claimUser.Identity.IsAuthenticated)
-             return RedirectToAction("Index", "Home");
+                if(_tokensService.ValidateToken(modelRegister.Token))//TOKEN IS VALID
+                {
 
-         return View();
-     }
-     [HttpPost]
-     public async Task<IActionResult> LoginStudent(VMLogin modelLogin)
-     {//if email and password match in the database
-         if (_studentService.StudentSignIn(modelLogin.Email, modelLogin.Password))
-         {
-             List<Claim> claims = new List<Claim>(){
-                 new Claim(ClaimTypes.NameIdentifier, modelLogin.Email),
-                 new Claim("OtherProperties", "Example Role")
-             };
+                    await _studentService.Register(s);
+                    await Login(new VMLogin { Email = s.Email, Password = s.Password, StudentDot = true, TeacherDot = false, KeepLoggedIn = false });
+                    //delete the token
+                    await _tokensService.DeleteToken(modelRegister.Token);
+                    TempData["Email"] = modelRegister.Email;
 
-             ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    return RedirectToAction("Privacy", "Home");//unde merge sudentul cand face login
+                }
 
-             AuthenticationProperties properties = new AuthenticationProperties()
-             {
-                 AllowRefresh = true,
-                 IsPersistent = modelLogin.KeepLoggedIn
-             };
-
-             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                 new ClaimsPrincipal(claimsIdentity), properties);
-
-             TempData["Email"] = modelLogin.Email;
-
-             return RedirectToAction("Index", "Home");
-         }
-
-         ViewData["ValidateMessage"] = "User not found";
-         return View();
-     }
-
-
-     public IActionResult LoginTeacher()
-     {
-         ClaimsPrincipal claimUser = HttpContext.User;
-
-         if (claimUser.Identity.IsAuthenticated)
-             return RedirectToAction("ShowStudents", "Home");
-
-         return View();
-     }
-     [HttpPost]
-     public async Task<IActionResult> LoginTeacher(VMLogin modelLogin)
-     {//if email and password match in the database
-         if (_teacherService.TeacherSignIn(modelLogin.Email, modelLogin.Password))
-         {
-             List<Claim> claims = new List<Claim>(){
-                 new Claim(ClaimTypes.NameIdentifier, modelLogin.Email),
-                 new Claim("OtherProperties", "Example Role")
-             };
-
-             ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-             AuthenticationProperties properties = new AuthenticationProperties()
-             {
-                 AllowRefresh = true,
-                 //IsPersistent = modelLogin.KeepLoggedIn
-             };
-
-             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                 new ClaimsPrincipal(claimsIdentity), properties);
-
-             TempData["Email"] = modelLogin.Email;//This is how you pass data to subsequent controllers and views
-
-             return RedirectToAction("ShowStudents", "Home");
-         }
-
-         ViewData["ValidateMessage"] = "User not found";
-         return View();
-     }*/
-
+                ViewData["ValidateMessage"] = "Token invalid";
+                return View();
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status401Unauthorized, new { message = "Complete all fields" });
+            }
+        }
 
     }
 }

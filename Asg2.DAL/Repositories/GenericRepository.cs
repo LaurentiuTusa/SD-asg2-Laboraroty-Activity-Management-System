@@ -44,5 +44,37 @@ namespace Asg2.DAL.Repositories
         {
             return _sdAsg2Context.Teachers.FirstOrDefault(s => s.Email == email);
         }
+
+        public async Task<Student> Register(Student st)
+        {
+            await _sdAsg2Context.Students.AddAsync(st);
+            await _sdAsg2Context.SaveChangesAsync();
+            return st;
+        }
+
+        public async Task<Token> AddToken(Token t)
+        {
+            await _sdAsg2Context.Tokens.AddAsync(t);
+            await _sdAsg2Context.SaveChangesAsync();
+            return t;
+        }
+
+        public Token GetTokenByValue(string inputToken)
+        {
+            return _sdAsg2Context.Tokens.FirstOrDefault(t => t.Token1 == inputToken);
+        }
+
+        public async Task DeleteToken(string tokenData)
+        {
+            var token = GetTokenByValue(tokenData);
+
+            if(token == null)
+            {
+                throw new ArgumentException($"Performance with specified string doe not exist");
+            }
+
+            _sdAsg2Context.Tokens.Remove(token);
+            await _sdAsg2Context.SaveChangesAsync();
+        }
     }
 }

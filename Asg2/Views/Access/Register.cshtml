@@ -1,0 +1,34 @@
+﻿@model Asg2.Models.VMRegister;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+</head>
+<body>
+    <form asp-controller="Access" asp-action="Register" method="post">
+        <h1>Register</h1>
+        <input type="email" placeholder="Email" asp-for="Email"/>
+        <input type="password" placeholder="Password" asp-for="Password"/>
+        <input type="text" placeholder="Name" asp-for="Name"/>
+        <input type="text" placeholder="Group" asp-for="Group"/>
+        <input type="text" placeholder="Hobby" asp-for="Hobby"/>
+        <input type="text" placeholder="Token" asp-for="Token"/>
+        
+
+        <button type="submit">Register</button>
+
+        @if (ViewData["ValidateMessage"] != null)
+        {
+            <br />
+            <br />
+            <label>@ViewData["ValidateMessage"]</label>
+        }
+    </form>
+</body>
+</html>

@@ -58,12 +58,25 @@ namespace Asg2.BLL.Services
             return true;
         }
 
+
         public static string Base64Encode(string s)
         {
             var sBytes = Encoding.UTF8.GetBytes(s);
             return Convert.ToBase64String(sBytes);
         }
 
-     
+        public async Task<Student> Register(Student st)
+        {
+            try
+            {
+                st.Password = Base64Encode(st.Password);
+                return await _repository.Register(st);
+            } 
+            catch
+            {
+                throw;
+            }
+            
+        }
     }
 }
