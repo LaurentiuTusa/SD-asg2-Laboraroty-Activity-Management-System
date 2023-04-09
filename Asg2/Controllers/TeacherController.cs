@@ -50,10 +50,22 @@ namespace Asg2.Controllers
             return View(listStudents);
         }
 
-        //[HttpPost] nu merge
+
+        public async Task<IActionResult> ShowLabs()
+        {
+            List<Lab> listLab = await _labsService.GetLabs();
+            return View(listLab);
+        }
+
+        //[HttpPost] nu merge. Poate cu IActionResult
         public async Task<ActionResult> GenerateToken()
         {
             await _tokensService.AddToken();
+            return RedirectToAction("ShowLabs", "Teacher");
+        }
+        public async Task<ActionResult> Delete(string email)
+        {
+            await _studentService.DeleteStudent(email);
             return RedirectToAction("ShowStudents", "Teacher");
         }
     }

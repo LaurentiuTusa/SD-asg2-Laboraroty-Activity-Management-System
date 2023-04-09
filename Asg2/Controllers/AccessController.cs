@@ -57,7 +57,7 @@ namespace Asg2.Controllers
 
                         TempData["Email"] = modelLogin.Email;
 
-                        return RedirectToAction("Index", "Home");//TREBE SCHIMBAT IN STUDENT CONTROLLER
+                        return RedirectToAction("ShowLabs4Student", "Student");//TREBE SCHIMBAT IN STUDENT CONTROLLER
                     }
 
                     ViewData["ValidateMessage"] = "Student not found";
@@ -86,7 +86,7 @@ namespace Asg2.Controllers
 
                         TempData["Email"] = modelLogin.Email;//This is how you pass data to subsequent controllers and views
 
-                        return RedirectToAction("ShowStudents", "Teacher");//TEACHER CONTROLLER
+                        return RedirectToAction("ShowLabs", "Teacher");//TEACHER CONTROLLER
                     }
 
                     ViewData["ValidateMessage"] = "Teacher not found";

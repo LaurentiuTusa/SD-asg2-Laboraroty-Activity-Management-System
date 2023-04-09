@@ -12,6 +12,23 @@ namespace Asg2.BLL.Services
 {
     public class LabsService : ILabsService
     {
+        private readonly IGenericRepository<Lab> _repository;
 
+        public LabsService(IGenericRepository<Lab> repository)
+        {
+            _repository = repository;
+        }
+
+        public async Task<List<Lab>> GetLabs()
+        {
+            try
+            {
+                return await _repository.GetLabs();
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

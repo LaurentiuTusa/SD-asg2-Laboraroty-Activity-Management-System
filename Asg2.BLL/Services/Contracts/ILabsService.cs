@@ -9,7 +9,7 @@ using Asg2.DAL.Models;
 namespace Asg2.BLL.Services.Contracts
 {
     public interface ILabsService
-
     {
+        Task<List<Lab>> GetLabs();
     }
 }

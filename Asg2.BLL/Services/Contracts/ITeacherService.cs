@@ -14,5 +14,6 @@ namespace Asg2.BLL.Services.Contracts
         Teacher GetTeacherByEmail(string email);
         bool TeacherSignIn(string email, string password);
 
+
     }
 }

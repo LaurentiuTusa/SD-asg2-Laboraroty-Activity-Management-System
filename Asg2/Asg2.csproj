@@ -15,8 +15,4 @@
     <ProjectReference Include="..\Asg2.BLL\Asg2.BLL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Student\" />
-  </ItemGroup>
-
 </Project>

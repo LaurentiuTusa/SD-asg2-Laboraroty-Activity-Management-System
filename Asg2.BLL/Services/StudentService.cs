@@ -78,5 +78,10 @@ namespace Asg2.BLL.Services
             }
             
         }
+
+        public async Task DeleteStudent(string email)
+        {
+            await _repository.DeleteStudent(email);
+        }
     }
 }

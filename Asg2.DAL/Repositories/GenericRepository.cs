@@ -76,5 +76,30 @@ namespace Asg2.DAL.Repositories
             _sdAsg2Context.Tokens.Remove(token);
             await _sdAsg2Context.SaveChangesAsync();
         }
+
+        public async Task<List<TModel>> GetLabs()
+        {
+            try
+            {
+                return await _sdAsg2Context.Set<TModel>().ToListAsync();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public async Task DeleteStudent(string email)
+        {
+            var stud = GetStudentByEmail(email);
+
+            if(stud == null)
+            {
+                throw new ArgumentException($"Performance with specified string doe not exist");
+            }
+
+            _sdAsg2Context.Students.Remove(stud);
+            await _sdAsg2Context.SaveChangesAsync();
+        }
     }
 }

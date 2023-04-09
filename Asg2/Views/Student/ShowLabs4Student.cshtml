@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Asg2.DAL.Models.Lab>
+
+@{
+    ViewData["Title"] = "ShowLabs4Student";
+    Layout = "~/Views/Shared/Student.cshtml";
+}
+
+<h1>ShowLabs4Student</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubjectId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Curricula)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AsgName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AsdDl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AsgDescription)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubjectId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Curricula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AsgName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AsdDl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AsgDescription)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
