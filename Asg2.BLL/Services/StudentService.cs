@@ -83,5 +83,28 @@ namespace Asg2.BLL.Services
         {
             await _repository.DeleteStudent(email);
         }
+
+        public async Task<Student> GetStudentById(int id)
+        {
+            return await _repository.GetStudentById(id);
+        }
+
+        public async Task UpdateStudent(int Id, string Name, string Email, string Password, string Group, string Hobby)
+        {
+            var student = await _repository.GetStudentById(Id);
+
+            if(student == null)
+            {
+                throw new ArgumentException("Student not Found");
+            }
+
+            student.Id = Id;
+            student.Name = Name;
+            student.Email = Email;
+            student.Password = Password;
+            student.Group = Group;
+            student.Hobby = Hobby;
+            await _repository.UpdateStudent(student);
+        }
     }
 }

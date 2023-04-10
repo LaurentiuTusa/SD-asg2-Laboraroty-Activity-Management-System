@@ -10,5 +10,7 @@ namespace Asg2.BLL.Services.Contracts
 {
     public interface IAttendanceService
     {
+        Task<List<Attendance>> GetAttendance();
+
     }
 }

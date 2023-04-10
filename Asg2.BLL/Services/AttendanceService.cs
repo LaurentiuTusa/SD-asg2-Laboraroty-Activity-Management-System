@@ -12,5 +12,21 @@ namespace Asg2.BLL.Services
 {
     public class AttendanceService : IAttendanceService
     {
+        private readonly IGenericRepository<Attendance> _repository;
+        public AttendanceService(IGenericRepository<Attendance> repository)
+        {
+            _repository = repository;
+        }
+        public async Task<List<Attendance>> GetAttendance()
+        {
+            try
+            {
+                return await _repository.GetAttendance();
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }
