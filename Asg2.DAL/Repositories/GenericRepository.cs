@@ -15,7 +15,7 @@ namespace Asg2.DAL.Repositories
     {
 
         private readonly SdAsg2Context _sdAsg2Context;
-
+        
         public GenericRepository(SdAsg2Context sdAsg2Context)
         {
             _sdAsg2Context = sdAsg2Context;
@@ -156,6 +156,75 @@ namespace Asg2.DAL.Repositories
             await _sdAsg2Context.SaveChangesAsync();
         }
 
+        public async Task<Submision> CreateSubmission(Submision sub)
+        {
+            await _sdAsg2Context.Submisions.AddAsync(sub);
+            await _sdAsg2Context.SaveChangesAsync();
+            return sub;
+        }
 
+        public async Task<List<Submision>> GetSubmissions4Students(string email)
+        {
+            // Get the student by their email
+            var student = GetStudentByEmail(email);
+
+            if (student == null)
+            {
+                // Student not found
+                return null;
+            }
+
+            try
+            {
+                return await _sdAsg2Context.Submisions.Where(s => s.StudentId == student.Id)./*Set<TModel>().*/ToListAsync();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public async Task<Attendance> CreateAttendance(Attendance a)
+        {
+            await _sdAsg2Context.Attendances.AddAsync(a);
+            await _sdAsg2Context.SaveChangesAsync();
+            return a;
+        }
+
+        public async Task DeleteAttendance(int id)
+        {
+            var att = await _sdAsg2Context.Attendances.FindAsync(id);
+
+            if (att == null)
+            {
+                throw new ArgumentException($"Performance with specified id doe not exist");
+            }
+
+            _sdAsg2Context.Attendances.Remove(att);
+            await _sdAsg2Context.SaveChangesAsync();
+        }
+
+        public async Task<List<TModel>> GetSubmissions()
+        {
+            try
+            {
+                return await _sdAsg2Context.Set<TModel>().ToListAsync();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public async Task UpdateGrade(Submision s)
+        {
+            _sdAsg2Context.Submisions.Update(s);
+            await _sdAsg2Context.SaveChangesAsync();
+        }
+
+        public async Task<Submision> GetSubmissionById(int id)
+        {
+            return await _sdAsg2Context.Submisions.FindAsync(id);
+        }
     }
 }

@@ -8,7 +8,7 @@
 <h1>ShowStudents</h1>
 
 <p>
-    <a asp-action="CreateStudent">Create New</a>
+    @*<a asp-action="CreateStudent">Create New</a>*@
 </p>
 <table class="table">
     <thead>
@@ -57,7 +57,7 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "EditS", new {  Id=item.Id, /*Name=item.Name, Email=item.Email, Password=item.Password, Group=item.Group, Hobby=item.Hobby*/  }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
                 @Html.ActionLink("Delete", "DeleteS", new { email =item.Email  })
             </td>
         </tr>

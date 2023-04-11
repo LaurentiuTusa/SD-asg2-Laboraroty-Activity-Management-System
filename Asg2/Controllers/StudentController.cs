@@ -50,5 +50,51 @@ namespace Asg2.Controllers
             List<Lab> listLab = await _labsService.GetLabs();
             return View(listLab);
         }
+
+        [HttpGet]
+        public async Task<ActionResult> AddSubmission(int Id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AddSubmission(int Id, VMCreateSubmission createSubmission)//Id as in lab_id \\\\\ mai ai nevoie de parametri pt link si comments pe care le iei dintr-un VMAddSubmission modelSubmission
+        {
+            //get student by email
+            var stud = _studentService.GetStudentByEmail((string)TempData["Email"]);
+            //extract their id in order to prepare for creation of a new submission
+            try
+            {
+                Submision s = new Submision
+                {
+                    //Id 
+
+                    StudentId = stud.Id,
+
+                    LabId = Id,
+
+                    Link = createSubmission.Link,
+
+                    Comment = createSubmission.Comment,
+
+                    //Grade = null
+                };
+
+                await _submisionsService.CreateSubmission(s);
+                return RedirectToAction("ShowLabs4Student", "Student");
+            }
+            catch
+            {
+                return RedirectToAction("AddSubmission", "Student");
+            }
+
+        }
+
+        public async Task<IActionResult> ShowSubmissions()
+        {
+            List<Submision> listS = await _submisionsService.GetSubmission4Students((string)TempData["Email"]);
+            return View(listS);
+        }
+
     }
 }

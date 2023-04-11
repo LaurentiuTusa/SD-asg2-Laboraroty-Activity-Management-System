@@ -5,6 +5,8 @@ using Asg2.DAL.Repositories.Contracts;
 using Asg2.BLL.Services;
 using Asg2.BLL.Services.Contracts;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 

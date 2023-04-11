@@ -167,5 +167,70 @@ namespace Asg2.Controllers
             List<Attendance> attendances = await _attendanceService.GetAttendance();
             return View(attendances);
         }
+
+        [HttpGet]
+        public async Task<ActionResult> CreateAttendance()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CreateAttendance(VMCreateAttendance modelAttendance)
+        {
+            try
+            {
+                Attendance att = new Attendance
+                {
+                    //Id = id,
+                    LabId = modelAttendance.LabId,
+                    StudentId = modelAttendance.StudentId
+    
+                };
+
+                await _attendanceService.CreateAttendance(att);
+                return RedirectToAction("ShowAttendance", "Teacher");
+            }
+            catch
+            {
+                return RedirectToAction("CreateAttendance", "Teacher");
+            }
+        }
+
+        public async Task<ActionResult> DeleteA(int id)
+        {
+            await _attendanceService.DeleteAttendance(id);
+            return RedirectToAction("ShowAttendance", "Teacher");
+        }
+
+        public async Task<IActionResult> ShowSubmissions()
+        {
+            List<Submision> subs = await _submisionsService.GetSubmissions();
+            return View(subs);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> Grade(int Id)
+        {
+            var sub = await _submisionsService.GetSubmissionById(Id);
+            if (sub == null)
+            {
+                return NotFound();
+            }
+            return View(sub);
+        }
+
+        [HttpPost]                                                                                              //doar pt grade field
+        public async Task<ActionResult> Grade(int Id, int StudentId, int LabId, string Link, string Comment, VMGrade modelGrade)
+        {
+            try
+            {                                   
+                await _submisionsService.UpdateGrade(Id, StudentId, LabId, Link, Comment, modelGrade.Grade);
+                return RedirectToAction("ShowSubmissions", "Teacher");
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status401Unauthorized, new { message = "Complete all fields" });
+            }
+        }
     }
 }

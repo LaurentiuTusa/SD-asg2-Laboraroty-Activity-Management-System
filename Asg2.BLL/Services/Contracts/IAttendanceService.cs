@@ -12,5 +12,8 @@ namespace Asg2.BLL.Services.Contracts
     {
         Task<List<Attendance>> GetAttendance();
 
+        Task<Attendance> CreateAttendance(Attendance a);
+        Task DeleteAttendance(int id);
+
     }
 }

@@ -17,6 +17,24 @@ namespace Asg2.BLL.Services
         {
             _repository = repository;
         }
+
+        public async Task<Attendance> CreateAttendance(Attendance a)
+        {
+            try
+            {
+                return await _repository.CreateAttendance(a);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public async Task DeleteAttendance(int id)
+        {
+            await _repository.DeleteAttendance(id);
+        }
+
         public async Task<List<Attendance>> GetAttendance()
         {
             try

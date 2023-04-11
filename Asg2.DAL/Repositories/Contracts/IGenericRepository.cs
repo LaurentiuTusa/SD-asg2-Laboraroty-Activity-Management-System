@@ -16,7 +16,12 @@ namespace Asg2.DAL.Repositories.Contracts
 
         Task<List<TModel>> GetLabs();
         Task<List<TModel>> GetAttendance();
+
+        Task<List<TModel>> GetSubmissions();
+        Task<List<Submision>> GetSubmissions4Students(string email);
         Task<Lab> CreateLab(Lab l);
+
+        Task<Attendance> CreateAttendance(Attendance a);
 
         Task<Student> Register(Student st);
 
@@ -34,8 +39,14 @@ namespace Asg2.DAL.Repositories.Contracts
         Task DeleteStudent(string email);
         Task DeleteLab(int id);
 
+        Task DeleteAttendance(int id);
+
         Task<Lab> GetLabById (int id);
         Task UpdateLab(Lab l);
+        Task UpdateGrade(Submision s);
+
+        Task<Submision> CreateSubmission(Submision sub);
+        Task<Submision> GetSubmissionById(int id);
 
     }
 }
